@@ -661,7 +661,7 @@ function submitGuess ()
 			wordles[i].solved = true;
 			debug("wordles[" + i + "] solved for the first time, solved=" + solved)
 
-			let beat = new Audio('http://sevendral.com/cleverdle/res/success-1-6297.mp3');
+			let beat = new Audio('https://admiralspunky.github.io/cleverdle/res/success-1-6297.mp3');
 			"volume" in localStorage ? beat.volume = localStorage.getItem('volume') : beat.volume = 0.5
 			beat.play();
 
@@ -690,7 +690,7 @@ function submitGuess ()
 	if (solved>oldSolved) {
         guessesRemaining++
     } else {
-		let beat = new Audio('http://sevendral.com/cleverdle/res/failure-drum-sound-effect-2-7184.mp3');
+		let beat = new Audio('https://admiralspunky.github.io/cleverdle/res/failure-drum-sound-effect-2-7184.mp3');
 		"volume" in localStorage ? beat.volume = localStorage.getItem('volume') : beat.volume = 0.5
 		beat.play();
 	}
@@ -922,7 +922,7 @@ function gameOver()
 			document.querySelector('.previewButton-' + i + '-previewSquare-' + j).innerHTML = wordles[i].target[j]
 	}
 
-	postmortem = "Cleverdle by AdmiralSpunky: sevendral.com/cleverdle/" //assembling a report for the end of the game
+	postmortem = "Cleverdle by AdmiralSpunky: https://admiralspunky.github.io/cleverdle/" //assembling a report for the end of the game
 
 	if (mode=='daily')
 	{
