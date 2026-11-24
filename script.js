@@ -279,7 +279,8 @@ function cycleForward(d) { //if you press Enter on an empty guessRow, cycle to t
 	if (i >= numPuzzles) i = 0;
 	debug("currentWordle " + i);
 	var attempts = 0;
-	while (wordles[i].solved && attempts < numPuzzles) {//if the current puzzle is already solved, switch to the next one
+	while (wordles[i].solved && attempts < numPuzzles) //if the current puzzle is already solved, switch to the next one
+	{
 		i++;
 		if (i >= numPuzzles) i = 0;
 		attempts++;
@@ -294,7 +295,7 @@ function cycleBackward(d) { //if you press backspace on an empty guessRow, cycle
 	debug("currentWordle " + i);
 	//debug(wordles[i]);
 	var attempts = 0;
-	while (wordles[i].solved && attempts < numPuzzles) { //if the current puzzle is solved, switch to the previous one
+	while (wordles[i].solved && attempts < numPuzzles) //if the current puzzle is solved, switch to the previous one
 	{
 		i--
 		if (i < 0) i = numPuzzles-1
