@@ -1,3 +1,7 @@
+2.8 2026-11-24 - I found a few infinite loops; when I refreshed the page, I wasn't also refreshing some of my game-state variables.
+
+2026-10-28 - I went back and checked on this program a few years later; the site where I had been hosting this game is now giving security errors, so I moved it to my Github: https://admiralspunky.github.io/cleverdle/
+
 2.7 2022-02-20
 popups for Info and Settings
 marathon mode high score

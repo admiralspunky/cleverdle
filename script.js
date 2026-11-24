@@ -278,10 +278,11 @@ function cycleForward(d) { //if you press Enter on an empty guessRow, cycle to t
 	debug("i="+i+" numPuzzles="+numPuzzles);
 	if (i >= numPuzzles) i = 0;
 	debug("currentWordle " + i);
-	while (wordles[i].solved) //if the current puzzle is solved, switch to the next one
-	{
-		i++
-		if (i >= numPuzzles) i = 0
+	var attempts = 0;
+	while (wordles[i].solved && attempts < numPuzzles) {//if the current puzzle is already solved, switch to the next one
+		i++;
+		if (i >= numPuzzles) i = 0;
+		attempts++;
 	}
 	switchToWordle(i)
 }
@@ -292,10 +293,12 @@ function cycleBackward(d) { //if you press backspace on an empty guessRow, cycle
 	if (i < 0) i = numPuzzles-1;
 	debug("currentWordle " + i);
 	//debug(wordles[i]);
-	while (wordles[i].solved) //if the current puzzle is solved, switch to the previous one
+	var attempts = 0;
+	while (wordles[i].solved && attempts < numPuzzles) { //if the current puzzle is solved, switch to the previous one
 	{
 		i--
 		if (i < 0) i = numPuzzles-1
+		attempts++;
 	}
 	switchToWordle(i)
 }
@@ -343,6 +346,8 @@ function initGame() {
     {
 	    debug("load wordles[] from storage")
 	    wordles = JSON.parse(localStorage.getItem("wordles") )//here's an empty array of Wordle objects that I will populate later
+		numPuzzles = wordles.length; // I keep track of some game-state counters, and I need to refresh them 
+		solved = wordles.filter(wordle => wordle.solved).length;
     }
     else
     {
@@ -769,12 +774,13 @@ function submitGuess ()
 		let tile = document.getElementById('guessRow-' + (guessRows.length-1)).children[currentTile]
 		tile.classList.add('current') //cornflower blue
 
-
-		while (wordles[currentWordle].solved) //TODO: What if there are no unsolved puzzles, and this is an infinite loop?
+		var attempts = 0;
+		while (wordles[currentWordle].solved && attempts < numPuzzles)
 		{
 			debug("wordle " + currentWordle + " is solved, checking the next one")
 			currentWordle++
 			if (currentWordle >= numPuzzles) currentWordle = 0
+			attempts++;
 		}
 		//yes, we do have to call switchToWordle here, even if we don't actually switch, because we haven't updated the summary row yet
 		switchToWordle(currentWordle) // switch to the next unsolved puzzle
